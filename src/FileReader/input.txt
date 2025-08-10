@@ -1,0 +1,3 @@
+Hey, There!!
+How are you??
+Welcome to java bufferreader and about to be in bufferWriter!!

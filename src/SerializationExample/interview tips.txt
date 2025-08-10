@@ -1,0 +1,46 @@
+2. Key Points
+implements Serializable
+
+Marker interface (no methods) — tells JVM that this object can be serialized.
+
+serialVersionUID
+
+Unique ID for version control.
+
+If you change the class but keep the same serialVersionUID, old serialized data can still be read.
+
+ObjectOutputStream → Writes an object to a stream.
+
+ObjectInputStream → Reads the object back.
+
+You must cast the object after reading.
+
+3. Transient Keyword
+If you don’t want a field to be serialized:
+
+java
+Copy code
+transient String password;
+That field will be skipped during serialization.
+
+4. Custom Serialization
+If you need control over how serialization happens:
+
+java
+Copy code
+private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject(); // serialize normal fields
+    out.writeObject("Encrypted-" + password); // custom behavior
+}
+
+private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    password = ((String) in.readObject()).replace("Encrypted-", "");
+}
+💡 SDE-2 Interview Tips
+
+Be ready to explain when not to use Java built-in serialization (e.g., large-scale systems often use JSON, Protocol Buffers, or Avro instead).
+
+Know that Serializable can cause performance issues because it uses reflection.
+
+Mention that Java serialization is not secure by default — an attacker could send a malicious serialized object.

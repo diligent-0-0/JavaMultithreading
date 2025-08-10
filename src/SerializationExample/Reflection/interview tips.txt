@@ -1,0 +1,38 @@
+2. What Reflection Can Do
+Get the class name, superclass, and interfaces.
+
+List all fields, methods, and constructors.
+
+Access private members (using setAccessible(true)).
+
+Create objects at runtime (clazz.newInstance() or via Constructor.newInstance()).
+
+Invoke methods without knowing them at compile time.
+
+3. Common Use Cases
+Frameworks (Spring, Hibernate) use reflection to:
+
+Inject dependencies (Spring’s @Autowired).
+
+Map database columns to fields (Hibernate ORM).
+
+Unit testing: Accessing private methods/fields for tests.
+
+Serialization/deserialization libraries (Jackson, Gson) use it to map JSON to objects.
+
+Plugins & dynamic loading: Load classes whose names come from config files.
+
+4. Pros & Cons
+Pros
+
+Very flexible — allows dynamic behavior.
+
+Enables powerful frameworks and libraries.
+
+Cons
+
+Slower than normal calls (uses metadata & checks at runtime).
+
+Breaks encapsulation (you can bypass private).
+
+Can cause security risks if used carelessly.
